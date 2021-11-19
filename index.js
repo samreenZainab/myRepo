@@ -1,14 +1,20 @@
 const http = require("http");
 const express = require("express");
 const index = express();
-
 const server = http.createServer(index);
-server.listen(3000);
+
 
 index.use((req,res,next) => {
-    console.log("sucessfully working");
-    next();
+    console.log("use function call 1");
+    next(); // used to pass the control to another middleware
 });
+index.use((req,res,next) => {
+    console.log("middleware working sucessfully");
+    res.end();
+});
+server.listen(3000);
+
+
 
 
 //anther way of creating server manually
